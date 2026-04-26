@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Produto</title>
+  {% include 'base_style.html' %}
+</head>
+<body>
+
+  <nav>
+    <span>🛒 Sistema de Loja</span>
+    <a href="/">Menu</a>
+    <a href="/produtos">Ver Produtos</a>
+    <a href="/cadastrar">Cadastrar</a>
+    <a href="/editar" class="ativo">Editar</a>
+  </nav>
+
+  <div class="container">
+    <h1>Editar Produto</h1>
+
+    <!-- =====================================================
+         BACKEND: a rota /editar/<int:indice> (GET + POST) deve:
+
+         GET → carregar o produto pelo índice e passar:
+           render_template("editar_produto.html", produto=produto, indice=indice)
+
+         POST → pegar os novos dados do form, atualizar no JSON e redirecionar:
+           nome      = request.form["nome"]
+           preco     = request.form["preco"]
+           categoria = request.form["categoria"]
+           dados[indice] = {"nome": nome, "preco": float(preco), "categoria": categoria}
+           → salvar no JSON → redirect("/editar")
+         ===================================================== -->
+
+    {% if sucesso %}
+    <div class="mensagem sucesso">✅ Produto atualizado com sucesso!</div>
+    {% endif %}
+
+    <div class="card">
+
+      <!-- O form envia para a mesma URL com POST -->
+      <form method="POST">
+
+        <label for="nome">Nome do Produto</label>
+        <!-- value="..." preenche com o valor atual do produto -->
+        <input type="text" id="nome" name="nome"
+               value="{{ produto['nome'] }}" required>
+
+        <label for="preco">Preço (R$)</label>
+        <input type="number" id="preco" name="preco"
+               value="{{ produto['preco'] }}" step="0.01" min="0" required>
+
+        <label for="categoria">Categoria</label>
+        <input type="text" id="categoria" name="categoria"
+               value="{{ produto['categoria'] }}" required>
+
+        <div style="margin-top:24px; display:flex; gap:12px;">
+          <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+          <a href="/editar" class="btn btn-secondary">Cancelar</a>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+</body>
+</html>

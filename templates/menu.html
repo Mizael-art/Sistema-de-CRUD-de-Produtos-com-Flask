@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Loja</title>
+  {% include 'base_style.html' %}
+</head>
+<body>
+
+  <!-- NAVEGAÇÃO (igual em todas as páginas) -->
+  <nav>
+    <span>🛒 Sistema de Loja</span>
+    <a href="/">Menu</a>
+    <a href="/produtos">Ver Produtos</a>
+    <a href="/cadastrar">Cadastrar</a>
+    <a href="/editar">Editar</a>
+  </nav>
+
+  <div class="container">
+    <h1>Menu Principal</h1>
+
+    <div class="card" style="display:flex; flex-direction:column; gap:14px;">
+
+      <a href="/produtos" class="btn btn-secondary" style="text-align:center">
+        📦 Ver Produtos Cadastrados
+      </a>
+
+      <a href="/cadastrar" class="btn btn-primary" style="text-align:center">
+        ➕ Cadastrar Novo Produto
+      </a>
+
+      <a href="/editar" class="btn btn-secondary" style="text-align:center">
+        ✏️ Editar / Excluir Produtos
+      </a>
+
+    </div>
+  </div>
+
+</body>
+</html>

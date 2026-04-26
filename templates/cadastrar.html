@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastrar Produto</title>
+  {% include 'base_style.html' %}
+</head>
+<body>
+
+  <nav>
+    <span>🛒 Sistema de Loja</span>
+    <a href="/">Menu</a>
+    <a href="/produtos">Ver Produtos</a>
+    <a href="/cadastrar" class="ativo">Cadastrar</a>
+    <a href="/editar">Editar</a>
+  </nav>
+
+  <div class="container">
+    <h1>Cadastrar Produto</h1>
+
+    <!-- =====================================================
+         BACKEND: quando o formulário for enviado (POST),
+         o Flask recebe os dados assim:
+           nome      = request.form["nome"]
+           preco     = request.form["preco"]
+           categoria = request.form["categoria"]
+
+         Depois de salvar, você pode redirecionar para /produtos
+         ou passar uma variável "sucesso=True" para mostrar a mensagem abaixo.
+         ===================================================== -->
+
+    <!-- Mensagem de sucesso — só aparece se o backend passar a variável "sucesso" -->
+    {% if sucesso %}
+    <div class="mensagem sucesso">
+      ✅ Produto cadastrado com sucesso!
+    </div>
+    {% endif %}
+
+    <!-- Mensagem de erro — só aparece se o backend passar a variável "erro" -->
+    {% if erro %}
+    <div class="mensagem erro">
+      ❌ {{ erro }}
+    </div>
+    {% endif %}
+
+    <div class="card">
+
+      <!-- O form envia para a mesma rota /cadastrar via POST -->
+      <form method="POST" action="/cadastrar">
+
+        <label for="nome">Nome do Produto</label>
+        <input type="text" id="nome" name="nome" placeholder="Ex: Maçã Fuji" required>
+
+        <label for="preco">Preço (R$)</label>
+        <input type="number" id="preco" name="preco" placeholder="Ex: 5.99" step="0.01" min="0" required>
+
+        <label for="categoria">Categoria</label>
+        <input type="text" id="categoria" name="categoria" placeholder="Ex: Fruta" required>
+
+        <div style="margin-top:24px; display:flex; gap:12px;">
+          <button type="submit" class="btn btn-primary">Salvar Produto</button>
+          <a href="/" class="btn btn-secondary">Cancelar</a>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+</body>
+</html>

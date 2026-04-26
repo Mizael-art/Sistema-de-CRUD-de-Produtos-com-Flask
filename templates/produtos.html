@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produtos</title>
+  {% include 'base_style.html' %}
+</head>
+<body>
+
+  <nav>
+    <span>🛒 Sistema de Loja</span>
+    <a href="/">Menu</a>
+    <a href="/produtos" class="ativo">Ver Produtos</a>
+    <a href="/cadastrar">Cadastrar</a>
+    <a href="/editar">Editar</a>
+  </nav>
+
+  <div class="container">
+    <h1>Produtos Cadastrados</h1>
+
+    <div class="card">
+
+      <!-- =====================================================
+           BACKEND: a variável "produtos" vem do Flask.
+           No app.py, na rota /produtos, você carrega o JSON
+           e passa: render_template("produtos.html", produtos=dados)
+
+           Cada produto deve ter as chaves: nome, preco, categoria
+           ===================================================== -->
+
+      {% if produtos %}
+
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nome</th>
+              <th>Categoria</th>
+              <th>Preço</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            {% for produto in produtos %}
+            <tr>
+              <td style="color:#aaa; font-size:13px;">{{ loop.index }}</td>
+              <td><strong>{{ produto["nome"] }}</strong></td>
+              <td>
+                <span style="background:#eef0f7; padding:3px 10px; border-radius:20px; font-size:13px;">
+                  {{ produto["categoria"] }}
+                </span>
+              </td>
+              <td style="font-weight:600; color:#4a6cf7;">
+                R$ {{ "%.2f"|format(produto["preco"]) }}
+              </td>
+            </tr>
+            {% endfor %}
+
+          </tbody>
+        </table>
+
+      {% else %}
+
+        <!-- Mostra isso quando a lista está vazia -->
+        <p style="text-align:center; color:#aaa; padding:30px 0;">
+          Nenhum produto cadastrado ainda.
+        </p>
+
+      {% endif %}
+
+    </div>
+
+    <div style="margin-top:16px;">
+      <a href="/cadastrar" class="btn btn-primary">➕ Cadastrar produto</a>
+    </div>
+
+  </div>
+
+</body>
+</html>
