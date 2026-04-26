@@ -32,12 +32,6 @@ Este projeto é um sistema web simples de gerenciamento de produtos, desenvolvid
 
 ---
 
-## 📸 Demonstração
-
-*(coloque aqui prints do sistema depois)*
-
----
-
 ## ▶️ Como rodar o projeto
 
 ```bash
