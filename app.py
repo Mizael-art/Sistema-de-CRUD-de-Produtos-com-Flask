@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect
 import json
+import os
 
 app = Flask(__name__)
 
@@ -118,4 +119,5 @@ def excluir(indice):
 
 
 # -------------------------------------------------------
-app.run(debug=True)
+
+app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))
